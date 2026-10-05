@@ -62,7 +62,12 @@ header{
   background-size:cover;background-position:center;
 }
 .hero-slide.active{opacity:1}
-.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,11,.35) 0%,rgba(14,13,11,.05) 40%,rgba(14,13,11,.55) 100%)}
+.hero-slide::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(14,13,11,.62) 0%,rgba(14,13,11,.2) 52%,rgba(14,13,11,.04) 100%),
+    linear-gradient(180deg,rgba(14,13,11,.25) 0%,rgba(14,13,11,.03) 40%,rgba(14,13,11,.72) 100%);
+}
 /* film edge strip — the signature */
 .film-edge{
   position:absolute;top:0;bottom:0;right:2.2rem;width:2px;background:rgba(255,255,255,.25);
@@ -74,15 +79,33 @@ header{
   color:rgba(255,255,255,.55);writing-mode:vertical-rl;background:var(--dark);padding:.6rem 0;
 }
 .hero-content{
-  position:absolute;left:2.2rem;bottom:4.2rem;z-index:6;max-width:640px;
+  position:absolute;left:clamp(2.2rem,5vw,5rem);bottom:clamp(3rem,7vh,5rem);z-index:6;
+  width:min(820px,calc(100vw - 10rem));padding-left:1.6rem;
+  animation:heroIn 1s cubic-bezier(.22,1,.36,1) both;
 }
-.hero-content .mono{color:var(--sepia);display:block;margin-bottom:1.1rem}
+.hero-content::before{
+  content:'';position:absolute;left:0;top:.25rem;bottom:.2rem;width:2px;
+  background:linear-gradient(180deg,var(--sepia),rgba(199,185,164,.12));
+}
+.hero-content::after{
+  content:'';position:absolute;z-index:-1;inset:-3rem -5rem -3rem -4rem;pointer-events:none;
+  background:radial-gradient(ellipse at 28% 62%,rgba(9,8,7,.5),rgba(9,8,7,.12) 48%,transparent 72%);
+  filter:blur(16px);
+}
+.hero-content .mono{
+  color:#EEE3D2;display:inline-block;margin-bottom:1.15rem;padding:.48rem .78rem;
+  background:rgba(14,13,11,.34);border:1px solid rgba(255,255,255,.18);border-radius:999px;
+  -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
+  text-shadow:0 1px 10px rgba(0,0,0,.35);
+}
 h1{
   font-family:'Fraunces',serif;font-weight:300;
   font-size:clamp(2.6rem,6.5vw,5.2rem);line-height:1.04;letter-spacing:-.01em;
 }
 h1 em{font-style:italic;font-weight:300}
-.hero-sub{margin-top:1.3rem;max-width:420px;font-size:.95rem;color:rgba(255,255,255,.75)}
+.hero-content h1{font-size:clamp(3rem,6.6vw,5.7rem);text-shadow:0 4px 28px rgba(0,0,0,.5)}
+.hero-sub{margin-top:1.25rem;max-width:54ch;font-size:1rem;color:rgba(255,255,255,.88);line-height:1.7;text-shadow:0 2px 14px rgba(0,0,0,.72)}
+@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .hero-count{
   position:absolute;left:2.2rem;top:50%;transform:translateY(-50%);z-index:6;
   display:flex;flex-direction:column;gap:.9rem;
@@ -247,6 +270,12 @@ footer{border-top:1px solid var(--line)}
   .film-edge{display:none}
   .hero-count{display:none}
   .hero-toggle{top:5.4rem;right:1.4rem}
+  .hero-content{left:1.2rem;right:1.2rem;bottom:1.8rem;width:auto;padding-left:1rem}
+  .hero-content::after{inset:-2rem -1rem -2rem -2rem}
+  .hero-content .mono{font-size:.53rem;line-height:1.5;margin-bottom:.85rem;padding:.38rem .55rem;border-radius:8px}
+  .hero-content h1{font-size:clamp(2.45rem,12vw,3.6rem)}
+  .hero-sub{font-size:.88rem;line-height:1.58;margin-top:.9rem;max-width:44ch}
+  .scroll-hint{display:none}
   .shot .cap{opacity:1}
   .shot:hover .ph{transform:none}
   .lb{padding:3.2rem .8rem 1.5rem}
@@ -276,9 +305,9 @@ footer{border-top:1px solid var(--line)}
 
 <header id="top">
   <!-- Replace the background-image URLs with your own photos -->
-  <div class="hero-slide active" aria-hidden="false" style="background-image:url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=80),linear-gradient(150deg,#2e2a22,#0e0d0b)"></div>
-  <div class="hero-slide" aria-hidden="true" style="background-image:url(https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80),linear-gradient(150deg,#232a2e,#0b0d0e)"></div>
-  <div class="hero-slide" aria-hidden="true" style="background-image:url(https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1800&q=80),linear-gradient(150deg,#2e2226,#0e0b0c)"></div>
+  <div class="hero-slide active" aria-hidden="false" role="img" aria-label="Couple walking hand in hand across a footbridge" style="background-image:url(images/web/hero-footbridge.jpg),linear-gradient(150deg,#2e2a22,#0e0d0b)"></div>
+  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Black-and-white view of a couple beside a lake" style="background-image:url(images/web/hero-lakeside-monochrome.jpg),linear-gradient(150deg,#232a2e,#0b0d0e)"></div>
+  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Couple dancing beneath pine trees beside a lake" style="background-image:url(images/web/hero-lakeside-dance.jpg),linear-gradient(150deg,#2e2226,#0e0b0c)"></div>
 
   <div class="hero-count" aria-label="hero slides">
     <button class="on" onclick="goSlide(0,true)" aria-label="Show slide 1" aria-current="true">1</button>
@@ -308,22 +337,27 @@ footer{border-top:1px solid var(--line)}
 
   <div class="filters" role="group" aria-label="Filter photographs">
     <button class="on" data-f="all" aria-pressed="true">All</button>
+    <button data-f="couple" aria-pressed="false">Couples</button>
+    <button data-f="maternity" aria-pressed="false">Maternity</button>
     <button data-f="portrait" aria-pressed="false">Portraits</button>
-    <button data-f="scenery" aria-pressed="false">Sceneries</button>
-    <button data-f="generic" aria-pressed="false">Everyday</button>
+    <button data-f="newborn" aria-pressed="false">Newborn</button>
   </div>
 
   <div class="grid" id="grid">
-    <!-- To use real photos: inside .ph add <img src="your-photo.jpg" alt="..."> and add class "has-img" to the .ph div -->
-    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:3/4;--g:linear-gradient(160deg,#4a4034,#1a150f)" data-src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80" alt="Bride and groom at first look" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">The first look</span><span class="f">P-014</span></figcaption></figure>
-    <figure class="shot" data-cat="scenery"><div class="ph has-img" data-label="Scenery" style="--ar:4/3;--g:linear-gradient(160deg,#33403c,#101514)" data-src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Lake at blue hour" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Blue hour, Hudson</span><span class="f">S-007</span></figcaption></figure>
-    <figure class="shot" data-cat="generic"><div class="ph has-img" data-label="Everyday" style="--ar:1/1;--g:linear-gradient(160deg,#403a44,#141116)" data-src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="Coffee on a cafe table" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Corner café</span><span class="f">E-021</span></figcaption></figure>
-    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:4/5;--g:linear-gradient(160deg,#443732,#160f0d)" data-src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Couple exchanging vows at dusk" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Vows at dusk</span><span class="f">P-032</span></figcaption></figure>
-    <figure class="shot" data-cat="scenery"><div class="ph has-img" data-label="Scenery" style="--ar:16/10;--g:linear-gradient(160deg,#2f3a45,#0d1013)" data-src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80" alt="Fog rolling over a ridge line" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Ridge line fog</span><span class="f">S-019</span></figcaption></figure>
-    <figure class="shot" data-cat="generic"><div class="ph has-img" data-label="Everyday" style="--ar:3/4;--g:linear-gradient(160deg,#453f2f,#14120c)" data-src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80" alt="City street scene" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Sunday market</span><span class="f">E-008</span></figcaption></figure>
-    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:1/1;--g:linear-gradient(160deg,#4a3d40,#171012)" data-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Couple dancing at reception" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">The quiet dance</span><span class="f">P-051</span></figcaption></figure>
-    <figure class="shot" data-cat="scenery"><div class="ph has-img" data-label="Scenery" style="--ar:3/4;--g:linear-gradient(160deg,#2c4038,#0c1310)" data-src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Sunlight through pine forest" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Pine valley</span><span class="f">S-002</span></figcaption></figure>
-    <figure class="shot" data-cat="generic"><div class="ph has-img" data-label="Everyday" style="--ar:4/3;--g:linear-gradient(160deg,#3d3d46,#111114)" data-src="https://images.unsplash.com/photo-1428592953211-077101b2021b?auto=format&fit=crop&w=900&q=80"><img src="https://images.unsplash.com/photo-1428592953211-077101b2021b?auto=format&fit=crop&w=900&q=80" alt="Rain drops on window glass" loading="lazy" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Rain on glass</span><span class="f">E-033</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:2/3;--g:linear-gradient(160deg,#6f7965,#26332e)" data-src="images/web/couple-shoreline.jpg"><img src="images/web/couple-shoreline.jpg" alt="Couple walking barefoot together along a quiet shoreline" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Shoreline stroll</span><span class="f">C-001</span></figcaption></figure>
+    <figure class="shot" data-cat="newborn"><div class="ph has-img" data-label="Newborn" style="--ar:9/16;--g:linear-gradient(160deg,#d9c2ae,#8f7765)" data-src="images/web/newborn-details.jpg"><img src="images/web/newborn-details.jpg" alt="Collage of a newborn baby's hands, feet, and sleeping face" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Tiny details</span><span class="f">N-001</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/4;--g:linear-gradient(160deg,#b88d28,#6f3a28)" data-src="images/web/maternity-gold-sari-01.jpg"><img src="images/web/maternity-gold-sari-01.jpg" alt="Expectant mother in a gold sari with her partner kneeling beside her" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Waiting for you</span><span class="f">M-001</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b8923d,#4f6b45)" data-src="images/web/maternity-gold-sari-02.jpg"><img src="images/web/maternity-gold-sari-02.jpg" alt="Expectant couple walking outdoors in traditional attire" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Summer walk</span><span class="f">M-002</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/4;--g:linear-gradient(160deg,#ae8330,#66523a)" data-src="images/web/maternity-gold-sari-03.jpg"><img src="images/web/maternity-gold-sari-03.jpg" alt="Expectant couple smiling together in gold and cream traditional clothing" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Golden anticipation</span><span class="f">M-003</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:5/8;--g:linear-gradient(160deg,#5d6b55,#302a28)" data-src="images/web/couple-outdoor-steps.jpg"><img src="images/web/couple-outdoor-steps.jpg" alt="Couple sharing a relaxed moment while seated on outdoor steps" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Between moments</span><span class="f">C-002</span></figcaption></figure>
+    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:2/3;--g:linear-gradient(160deg,#2f8f67,#e19b2e)" data-src="images/web/portrait-green-sari-rangoli.jpg"><img src="images/web/portrait-green-sari-rangoli.jpg" alt="Woman in a green sari standing beside a colorful rangoli" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Festival colors</span><span class="f">P-001</span></figcaption></figure>
+    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:3/2;--g:linear-gradient(160deg,#35886a,#d8a63b)" data-src="images/web/portrait-rangoli-wide.jpg"><img src="images/web/portrait-rangoli-wide.jpg" alt="Woman in a green sari seated beside a large colorful rangoli" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Rangoli morning</span><span class="f">P-002</span></figcaption></figure>
+    <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:2/3;--g:linear-gradient(160deg,#23805d,#8f222a)" data-src="images/web/portrait-floral-doorway.jpg"><img src="images/web/portrait-floral-doorway.jpg" alt="Woman in a green sari framed by red and white floral garlands" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Framed in flowers</span><span class="f">P-003</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c6a982,#6c5b4c)" data-src="images/web/maternity-cream-gold-01.jpg"><img src="images/web/maternity-cream-gold-01.jpg" alt="Expectant couple posing indoors in cream and gold traditional clothing" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Quiet celebration</span><span class="f">M-004</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c8ad87,#574b43)" data-src="images/web/maternity-cream-gold-02.jpg"><img src="images/web/maternity-cream-gold-02.jpg" alt="Close portrait of an expectant couple looking at one another" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Looking forward</span><span class="f">M-005</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b69a7d,#4f4540)" data-src="images/web/maternity-cream-gold-03.jpg"><img src="images/web/maternity-cream-gold-03.jpg" alt="Expectant couple touching foreheads and holding hands indoors" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Close to you</span><span class="f">M-006</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:2/3;--g:linear-gradient(160deg,#394b39,#201e20)" data-src="images/web/couple-tree-embrace.jpg"><img src="images/web/couple-tree-embrace.jpg" alt="Couple embracing beside a tree in a park" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Under the trees</span><span class="f">C-003</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:3/2;--g:linear-gradient(160deg,#8297a2,#3d4d50)" data-src="images/web/couple-lakeshore-wide.jpg"><img src="images/web/couple-lakeshore-wide.jpg" alt="Couple standing together at the edge of a peaceful lake" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">At the water's edge</span><span class="f">C-004</span></figcaption></figure>
   </div>
 </section>
 
