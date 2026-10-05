@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Passion Pixel photography by Priya and Pravallika—portraits, couples, maternity, newborn, events, and lifestyle sessions in Atlanta and Indianapolis.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0E0D0B">
 <title>Passion Pixel — Photography</title>
+<link rel="preload" as="image" href="images/web/hero-lakeside-monochrome.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -172,7 +176,7 @@ h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6
 .shot .cap .t{font-family:'Fraunces',serif;font-style:italic;font-size:1rem}
 .shot .cap .f{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.15em;color:var(--sepia)}
 
-/* placeholder art (used when an image URL isn't set / fails) */
+/* image fallback */
 .ph{aspect-ratio:var(--ar,3/4);background:var(--g,linear-gradient(160deg,#3a372f,#191713));position:relative}
 .ph::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.12) 45%,transparent 65%);background-size:220% 100%;animation:shimmer 1.4s linear infinite;transition:opacity .35s}
 .ph.loaded::before{opacity:0;pointer-events:none}
@@ -192,10 +196,6 @@ h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6
 .about h2{margin-bottom:1.4rem}
 .about p{color:var(--smoke);margin-bottom:1rem;font-size:.98rem;max-width:52ch}
 .about .mono{color:#7C8A5E;display:block;margin-bottom:1rem}
-.stats{display:flex;gap:3rem;margin-top:2.2rem;flex-wrap:wrap}
-.stats div strong{font-family:'Fraunces',serif;font-weight:300;font-size:2rem;display:block;color:var(--ink)}
-.stats div span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke)}
-
 /* ---------- SERVICES ---------- */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 .svc{border:1px solid var(--line);padding:2rem 1.6rem;transition:border-color .3s,transform .3s}
@@ -204,7 +204,7 @@ h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6
 .svc h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.3rem;margin-bottom:.7rem}
 .svc p{font-size:.9rem;color:var(--smoke)}
 
-/* ---------- SAMPLE TESTIMONIALS ---------- */
+/* ---------- KIND WORDS ---------- */
 .kind-words{background:var(--dark);color:#fff;max-width:none}
 .kind-words-inner{max-width:var(--max);margin:0 auto}
 .kind-words .sec-head{border-color:rgba(255,255,255,.18)}
@@ -213,7 +213,6 @@ h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.8rem,3.4vw,2.6
 .quote{border:1px solid rgba(255,255,255,.18);padding:2rem;background:rgba(255,255,255,.035)}
 .quote blockquote{font-family:'Fraunces',serif;font-size:1.2rem;line-height:1.55;font-weight:300;margin-bottom:1.5rem}
 .quote cite{font-style:normal;color:var(--sepia)}
-.sample-note{margin-top:1.3rem;color:rgba(255,255,255,.58);font-size:.78rem}
 
 /* ---------- CONTACT ---------- */
 .contact{text-align:center;padding-top:7rem;padding-bottom:7rem}
@@ -269,6 +268,7 @@ footer{border-top:1px solid var(--line)}
   .grid{columns:1}
   .film-edge{display:none}
   .hero-count{display:none}
+  .hero-slide:nth-of-type(1){background-position:68% center}
   .hero-toggle{top:5.4rem;right:1.4rem}
   .hero-content{left:1.2rem;right:1.2rem;bottom:1.8rem;width:auto;padding-left:1rem}
   .hero-content::after{inset:-2rem -1rem -2rem -2rem}
@@ -292,7 +292,7 @@ footer{border-top:1px solid var(--line)}
 </head>
 <body>
 
-<nav>
+<nav aria-label="Primary navigation">
   <a class="logo" href="#top">Passion Pixel<span style="color:var(--sepia)">.</span></a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
   <ul id="site-menu">
@@ -304,10 +304,9 @@ footer{border-top:1px solid var(--line)}
 </nav>
 
 <header id="top">
-  <!-- Replace the background-image URLs with your own photos -->
-  <div class="hero-slide active" aria-hidden="false" role="img" aria-label="Couple walking hand in hand across a footbridge" style="background-image:url(images/web/hero-footbridge.jpg),linear-gradient(150deg,#2e2a22,#0e0d0b)"></div>
-  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Black-and-white view of a couple beside a lake" style="background-image:url(images/web/hero-lakeside-monochrome.jpg),linear-gradient(150deg,#232a2e,#0b0d0e)"></div>
-  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Couple dancing beneath pine trees beside a lake" style="background-image:url(images/web/hero-lakeside-dance.jpg),linear-gradient(150deg,#2e2226,#0e0b0c)"></div>
+  <div class="hero-slide active" aria-hidden="false" role="img" aria-label="Black-and-white view of a couple beside a lake" style="background-image:url(images/web/hero-lakeside-monochrome.jpg),linear-gradient(150deg,#232a2e,#0b0d0e)"></div>
+  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Couple dancing beneath pine trees beside a lake" style="background-image:url(images/web/hero-lakeside-dance.jpg?v=20261005),linear-gradient(150deg,#2e2226,#0e0b0c)"></div>
+  <div class="hero-slide" aria-hidden="true" role="img" aria-label="Couple walking hand in hand across a footbridge" style="background-image:url(images/web/hero-footbridge.jpg),linear-gradient(150deg,#2e2a22,#0e0d0b)"></div>
 
   <div class="hero-count" aria-label="hero slides">
     <button class="on" onclick="goSlide(0,true)" aria-label="Show slide 1" aria-current="true">1</button>
@@ -346,18 +345,24 @@ footer{border-top:1px solid var(--line)}
   <div class="grid" id="grid">
     <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:2/3;--g:linear-gradient(160deg,#6f7965,#26332e)" data-src="images/web/couple-shoreline.jpg"><img src="images/web/couple-shoreline.jpg" alt="Couple walking barefoot together along a quiet shoreline" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Shoreline stroll</span><span class="f">C-001</span></figcaption></figure>
     <figure class="shot" data-cat="newborn"><div class="ph has-img" data-label="Newborn" style="--ar:9/16;--g:linear-gradient(160deg,#d9c2ae,#8f7765)" data-src="images/web/newborn-details.jpg"><img src="images/web/newborn-details.jpg" alt="Collage of a newborn baby's hands, feet, and sleeping face" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Tiny details</span><span class="f">N-001</span></figcaption></figure>
+    <figure class="shot" data-cat="newborn"><div class="ph has-img" data-label="Newborn" style="--ar:2/3;--g:linear-gradient(160deg,#7eb3d4,#7f9b47)" data-src="images/web/newborn-first-birthday.jpg"><img src="images/web/newborn-first-birthday.jpg" alt="Baby in a party dress watching a child hold a number one birthday balloon beside a lake" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">One little year</span><span class="f">N-002</span></figcaption></figure>
     <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/4;--g:linear-gradient(160deg,#b88d28,#6f3a28)" data-src="images/web/maternity-gold-sari-01.jpg"><img src="images/web/maternity-gold-sari-01.jpg" alt="Expectant mother in a gold sari with her partner kneeling beside her" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Waiting for you</span><span class="f">M-001</span></figcaption></figure>
     <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b8923d,#4f6b45)" data-src="images/web/maternity-gold-sari-02.jpg"><img src="images/web/maternity-gold-sari-02.jpg" alt="Expectant couple walking outdoors in traditional attire" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Summer walk</span><span class="f">M-002</span></figcaption></figure>
     <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/4;--g:linear-gradient(160deg,#ae8330,#66523a)" data-src="images/web/maternity-gold-sari-03.jpg"><img src="images/web/maternity-gold-sari-03.jpg" alt="Expectant couple smiling together in gold and cream traditional clothing" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Golden anticipation</span><span class="f">M-003</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b72724,#53623c)" data-src="images/web/maternity-red-sari-portrait.jpg"><img src="images/web/maternity-red-sari-portrait.jpg" alt="Expectant mother smiling outdoors in a red and gold sari" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Radiant in red</span><span class="f">M-004</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/2;--g:linear-gradient(160deg,#a93435,#79678c)" data-src="images/web/maternity-red-sari-garden.jpg"><img src="images/web/maternity-red-sari-garden.jpg" alt="Expectant mother in a red sari standing before purple garden flowers" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Garden bloom</span><span class="f">M-005</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:3/2;--g:linear-gradient(160deg,#a52a28,#455e46)" data-src="images/web/maternity-red-sari-couple.jpg"><img src="images/web/maternity-red-sari-couple.jpg" alt="Expectant couple standing together outdoors, with the mother wearing a red sari" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Growing together</span><span class="f">M-006</span></figcaption></figure>
     <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:5/8;--g:linear-gradient(160deg,#5d6b55,#302a28)" data-src="images/web/couple-outdoor-steps.jpg"><img src="images/web/couple-outdoor-steps.jpg" alt="Couple sharing a relaxed moment while seated on outdoor steps" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Between moments</span><span class="f">C-002</span></figcaption></figure>
     <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:2/3;--g:linear-gradient(160deg,#2f8f67,#e19b2e)" data-src="images/web/portrait-green-sari-rangoli.jpg"><img src="images/web/portrait-green-sari-rangoli.jpg" alt="Woman in a green sari standing beside a colorful rangoli" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Festival colors</span><span class="f">P-001</span></figcaption></figure>
     <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:3/2;--g:linear-gradient(160deg,#35886a,#d8a63b)" data-src="images/web/portrait-rangoli-wide.jpg"><img src="images/web/portrait-rangoli-wide.jpg" alt="Woman in a green sari seated beside a large colorful rangoli" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Rangoli morning</span><span class="f">P-002</span></figcaption></figure>
     <figure class="shot" data-cat="portrait"><div class="ph has-img" data-label="Portrait" style="--ar:2/3;--g:linear-gradient(160deg,#23805d,#8f222a)" data-src="images/web/portrait-floral-doorway.jpg"><img src="images/web/portrait-floral-doorway.jpg" alt="Woman in a green sari framed by red and white floral garlands" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Framed in flowers</span><span class="f">P-003</span></figcaption></figure>
-    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c6a982,#6c5b4c)" data-src="images/web/maternity-cream-gold-01.jpg"><img src="images/web/maternity-cream-gold-01.jpg" alt="Expectant couple posing indoors in cream and gold traditional clothing" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Quiet celebration</span><span class="f">M-004</span></figcaption></figure>
-    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c8ad87,#574b43)" data-src="images/web/maternity-cream-gold-02.jpg"><img src="images/web/maternity-cream-gold-02.jpg" alt="Close portrait of an expectant couple looking at one another" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Looking forward</span><span class="f">M-005</span></figcaption></figure>
-    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b69a7d,#4f4540)" data-src="images/web/maternity-cream-gold-03.jpg"><img src="images/web/maternity-cream-gold-03.jpg" alt="Expectant couple touching foreheads and holding hands indoors" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Close to you</span><span class="f">M-006</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c6a982,#6c5b4c)" data-src="images/web/maternity-cream-gold-01.jpg"><img src="images/web/maternity-cream-gold-01.jpg" alt="Expectant couple posing indoors in cream and gold traditional clothing" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Quiet celebration</span><span class="f">M-007</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#c8ad87,#574b43)" data-src="images/web/maternity-cream-gold-02.jpg"><img src="images/web/maternity-cream-gold-02.jpg" alt="Close portrait of an expectant couple looking at one another" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Looking forward</span><span class="f">M-008</span></figcaption></figure>
+    <figure class="shot" data-cat="maternity"><div class="ph has-img" data-label="Maternity" style="--ar:2/3;--g:linear-gradient(160deg,#b69a7d,#4f4540)" data-src="images/web/maternity-cream-gold-03.jpg"><img src="images/web/maternity-cream-gold-03.jpg" alt="Expectant couple touching foreheads and holding hands indoors" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Close to you</span><span class="f">M-009</span></figcaption></figure>
     <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:2/3;--g:linear-gradient(160deg,#394b39,#201e20)" data-src="images/web/couple-tree-embrace.jpg"><img src="images/web/couple-tree-embrace.jpg" alt="Couple embracing beside a tree in a park" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Under the trees</span><span class="f">C-003</span></figcaption></figure>
     <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:3/2;--g:linear-gradient(160deg,#8297a2,#3d4d50)" data-src="images/web/couple-lakeshore-wide.jpg"><img src="images/web/couple-lakeshore-wide.jpg" alt="Couple standing together at the edge of a peaceful lake" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">At the water's edge</span><span class="f">C-004</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:3/2;--g:linear-gradient(160deg,#6a664f,#313a2f)" data-src="images/web/couple-village-stroll.jpg"><img src="images/web/couple-village-stroll.jpg" alt="Couple holding hands while walking down a quiet village street" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Village stroll</span><span class="f">C-005</span></figcaption></figure>
+    <figure class="shot" data-cat="couple"><div class="ph has-img" data-label="Couples" style="--ar:3/2;--g:linear-gradient(160deg,#76472f,#314b39)" data-src="images/web/couple-winery-walk.jpg"><img src="images/web/couple-winery-walk.jpg" alt="Couple walking hand in hand through a colorful winery village" loading="lazy" decoding="async" onerror="this.parentElement.classList.remove('has-img');this.remove()"></div><figcaption class="cap"><span class="t">Winery walk</span><span class="f">C-006</span></figcaption></figure>
   </div>
 </section>
 
@@ -372,11 +377,6 @@ footer{border-top:1px solid var(--line)}
       <p>We’re drawn to genuine connection, natural emotion, beautiful light, and the little details that make every story different. Rather than simply documenting a moment, we want you to be able to look back at your photographs and feel it all over again.</p>
       <p>From intimate moments to the biggest celebrations, we’re honored to turn your memories into timeless photographs.</p>
       <p>Because the best photographs don’t just show you what happened—they take you back to how it felt.</p>
-      <!-- <div class="stats">
-        <div><strong>120+</strong><span>Portraits shot</span></div>
-        <div><strong>8</strong><span>Years shooting</span></div>
-        <div><strong>40k</strong><span>Frames a year</span></div>
-      </div> -->
     </div>
   </div>
 </div>
@@ -387,9 +387,9 @@ footer{border-top:1px solid var(--line)}
     <span class="mono">What We Shoot</span>
   </div>
   <div class="services">
-    <div class="svc"><span class="mono">Portraits</span><h3>Full session coverage</h3><p>Individuals, couples, and families. Candid-first, editorial where it counts. Digital gallery and prints included.</p></div>
-    <div class="svc"><span class="mono">LifeStyle & Candid</span><h3>Fine-art prints</h3><p>Limited-edition prints, shot on location at golden and blue hour. Framed or unframed.</p></div>
-    <div class="svc"><span class="mono">Events &amp; brands</span><h3>Everyday sessions</h3><p>Small events, gatherings, and brand shoots. Relaxed sessions that feel like hanging out, not posing.</p></div>
+    <div class="svc"><span class="mono">Portraits</span><h3>Portrait sessions</h3><p>Individuals, couples, maternity, newborn, and families. Candid-first, editorial where it counts, with a curated digital gallery.</p></div>
+    <div class="svc"><span class="mono">Lifestyle &amp; candid</span><h3>Natural storytelling</h3><p>Relaxed sessions centered on genuine connection, natural movement, and the meaningful details that make your story personal.</p></div>
+    <div class="svc"><span class="mono">Events &amp; brands</span><h3>Event and brand coverage</h3><p>Celebrations, intimate gatherings, and brand sessions photographed with an unobtrusive, story-driven approach.</p></div>
   </div>
 </section>
 
@@ -397,23 +397,22 @@ footer{border-top:1px solid var(--line)}
   <div class="kind-words-inner">
     <div class="sec-head">
       <h2>Kind words</h2>
-      <span class="mono">Sample testimonials</span>
+      <span class="mono">Anonymous reflections</span>
     </div>
     <div class="quotes">
       <article class="quote">
         <blockquote>“They made us feel completely at ease, and the photographs feel exactly like the day did—warm, joyful, and entirely ours.”</blockquote>
-        <cite class="mono">Sample — Maya &amp; Jordan</cite>
+        <cite class="mono">A couple from Atlanta</cite>
       </article>
       <article class="quote">
         <blockquote>“Nothing felt staged. They noticed all the small moments we missed and turned them into the images we keep returning to.”</blockquote>
-        <cite class="mono">Sample — The Rao Family</cite>
+        <cite class="mono">Newlyweds from Indianapolis</cite>
       </article>
       <article class="quote">
         <blockquote>“From planning through delivery, the experience was thoughtful, relaxed, and beautifully organized.”</blockquote>
-        <cite class="mono">Sample — Nina, Brand Session</cite>
+        <cite class="mono">A brand client from Atlanta</cite>
       </article>
     </div>
-    <p class="sample-note mono">Placeholder examples — replace these with verified client feedback when ready.</p>
   </div>
 </section>
 
@@ -434,7 +433,7 @@ footer{border-top:1px solid var(--line)}
   <div class="foot">
     <span class="mono">© 2026 Passion Pixel</span>
     <div class="socials">
-      <a href="https://www.instagram.com/passionpixelphotography?igsh=MXFrYzg5NWJxZmFibQ==" target="_blank" rel="noopener noreferrer" aria-label="Passion Pixel on Instagram (opens in a new tab)">Instagram</a>
+      <a href="https://www.instagram.com/passionpixelphotography/" target="_blank" rel="noopener noreferrer" aria-label="Passion Pixel on Instagram (opens in a new tab)">Instagram</a>
     </div>
   </div>
 </footer>
@@ -569,7 +568,7 @@ function renderLB(){
   lbPh.innerHTML='';
   if(p.dataset.src){
     const im=document.createElement('img');
-    im.src=p.dataset.src.replace('w=900','w=1600').replace('w=1000','w=1600');
+    im.src=p.dataset.src;
     im.alt=s.querySelector('.t').textContent;
     im.addEventListener('load',()=>lbPh.classList.add('loaded'),{once:true});
     lbPh.classList.remove('loaded');
